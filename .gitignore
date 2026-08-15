@@ -1,3 +1,21 @@
+# conda environments
+env/
+*.yml
+
+# jupyter
+.ipynb_checkpoints/
+
+# data
+data/
+outputs/
+
+# system
+.DS_Store
+Thumbs.db
+
+
+# Default stuff
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

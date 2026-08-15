@@ -1,0 +1,6 @@
+geopandas
+ipyleaflet
+matplotlib
+pyproj
+requests
+rioxarray==0.14.0
