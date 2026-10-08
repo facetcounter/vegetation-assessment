@@ -1,6 +1,7 @@
 # conda environments
 env/
 *.yml
+!environment.yml
 
 # jupyter
 .ipynb_checkpoints/

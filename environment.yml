@@ -1,0 +1,17 @@
+# src/ and tests/ don't need PDAL; it's here so the notebooks can execute pipelines.
+name: veg
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - python-pdal
+  - geopandas
+  - pyproj
+  - shapely
+  - rioxarray
+  - requests
+  - matplotlib
+  - ipyleaflet
+  - ipywidgets
+  - ipykernel
+  - pytest
