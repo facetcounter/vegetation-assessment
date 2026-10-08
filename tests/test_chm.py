@@ -3,7 +3,7 @@ import pytest
 import rioxarray
 import xarray as xr
 
-from src.chm import align_rasters, compute_chm, downsample_dem
+from veg_a.chm import align_rasters, compute_chm, downsample_dem
 
 NODATA = -9999
 

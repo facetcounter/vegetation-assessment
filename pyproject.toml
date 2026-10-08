@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "veg-a"
+version = "0.1.0"
+description = "Canopy height models from USGS 3DEP lidar"
+requires-python = ">=3.12"
+# Dependencies are managed by conda; see environment.yml.
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

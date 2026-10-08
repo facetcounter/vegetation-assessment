@@ -1,9 +1,13 @@
+from pathlib import Path
+
 import geopandas as gpd
 import pytest
 from shapely.geometry import Point, box
 
-from src.aoi import (estimate_point_count, find_intersecting_datasets, gcs_to_proj,
+from veg_a.aoi import (estimate_point_count, find_intersecting_datasets, gcs_to_proj,
                      import_shapefile_to_shapely, proj_to_3857)
+
+SAMPLE_AOI = Path(__file__).resolve().parent.parent / "examples" / "seward_sample_aoi.geojson"
 
 # Length of one degree of longitude at the equator in Web Mercator meters.
 DEG_3857 = 111_319.490793
@@ -35,6 +39,14 @@ def test_import_shapefile(tmp_path):
     # Shapefiles rewind rings clockwise, so compare with vertex order normalized.
     assert gcs.normalize().equals_exact(expected_gcs.normalize(), 1e-9)
     assert wm.normalize().equals_exact(expected_wm.normalize(), 1e-3)
+
+
+def test_sample_aoi_loads():
+    gcs, wm = import_shapefile_to_shapely(SAMPLE_AOI)
+    assert gcs.is_valid
+    assert -93.24 < gcs.centroid.x < -93.23 and 44.95 < gcs.centroid.y < 44.97
+    # ~200 m square on the ground; Web Mercator inflates area ~2x at 45N.
+    assert 0.6e5 < wm.area < 1.2e5
 
 
 def test_import_shapefile_without_crs_raises(tmp_path):

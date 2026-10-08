@@ -2,7 +2,7 @@
 
 ## DEMs are gridded in Web Mercator, so cell sizes aren't true meters
 
-The PDAL pipelines (`src/pipelines.py`, as used by notebook 05) reproject points to
+The PDAL pipelines (`veg_a/pipelines.py`, as used by notebook 05) reproject points to
 EPSG:3857 (`outCRS=3857`) before gridding. Web Mercator units are only true meters at the
 equator; they stretch by 1/cos(latitude). At Minneapolis (~45°N) a "2 m" DEM cell is about
 1.4 m on the ground, and areas computed in 3857 are about 2x too large.
@@ -26,7 +26,7 @@ toward a non-interactive version of notebook 05:
   report → fetch point clouds).
 - **Cell 10:** the empty cell is the planned 3DEP catalog download.
 
-`src/aoi.py` already covers reading the AOI, the catalog download, finding intersecting
+`veg_a/aoi.py` already covers reading the AOI, the catalog download, finding intersecting
 datasets, and the point estimate. Still missing:
 
 - AOI validation beyond the missing-CRS check (invalid or multipart geometry)
@@ -54,21 +54,15 @@ Numbers below are from a real run on a ~200 m AOI in Seward, Minneapolis.
 
 ## Workflow and repo hygiene
 
-- **Generated files aren't gitignored.** `*.tif`, `*.laz`, and `resources.geojson` are written
-  into `notebooks/` and could be committed by accident.
-- **Hard-coded path.** Notebook 05 cell 16 points to `C:/Users/cleor/capstone/...`, a path on
-  someone else's machine.
 - **Colab path is broken.** The Colab setup cells clone the upstream OpenTopography repo, so
-  `src/` isn't found there.
+  the `veg_a` package isn't installed there.
 - **Streaming vs. reclassify is a manual toggle.** `execute_streaming()` or `execute()` has
   to be chosen by commenting lines to match `reclassify`; the wrong one fails or runs out of
   memory.
-- **`OT-requirements.txt` is stale.** It duplicates `environment.yml` and pins an old
-  `rioxarray==0.14.0`.
 
 ## Smaller items
 
-- No CI, and no automated tests for the network or PDAL parts.
-- `shapely.ops.transform` (used in `src/aoi.py`) is deprecated in current Shapely.
-- **Attribution (unverified).** The code in `src/` is adapted from OpenTopography's
+- No automated tests for the network or PDAL parts; CI runs only the offline tests.
+- `shapely.ops.transform` (used in `veg_a/aoi.py`) is deprecated in current Shapely.
+- **Attribution (unverified).** The code in `veg_a` is adapted from OpenTopography's
   notebooks, and this repo is GPL-3.0. Their license terms and attribution are worth checking.

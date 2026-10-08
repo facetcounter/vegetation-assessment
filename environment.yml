@@ -2,6 +2,7 @@
 name: veg
 channels:
   - conda-forge
+  - nodefaults
 dependencies:
   - python=3.12
   - python-pdal
@@ -14,4 +15,8 @@ dependencies:
   - ipyleaflet
   - ipywidgets
   - ipykernel
+  - jupyterlab
   - pytest
+  - pip
+  - pip:
+      - -e .  # this repo's veg_a package

@@ -49,10 +49,11 @@ def gcs_to_proj(poly):
 
 def import_shapefile_to_shapely(path):
     """
-    Load the first geometry of a shapefile as the AOI.
+    Load the first geometry of a shapefile (or any vector file geopandas can read, such as
+    GeoJSON) as the AOI.
 
     Parameters:
-        path (filepath): location of shapefile; must have a CRS assigned (.prj)
+        path (filepath): location of the file; must have a CRS assigned (e.g. a .prj for shapefiles)
 
     Returns:
         (user_shp_epsg4326, user_shp_epsg3857): AOI in EPSG 4326 and EPSG 3857

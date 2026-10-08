@@ -2,6 +2,7 @@
 env/
 *.yml
 !environment.yml
+!.github/workflows/*.yml
 
 # jupyter
 .ipynb_checkpoints/
@@ -235,3 +236,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# workflow outputs (written next to the notebooks)
+*.tif
+*.las
+*.laz
+resources.geojson

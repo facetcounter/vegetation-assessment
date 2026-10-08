@@ -3,7 +3,7 @@ import json
 import pytest
 from shapely.geometry import box
 
-from src.pipelines import EPT_URL, build_pdal_pipeline, make_DEM_pipeline
+from veg_a.pipelines import EPT_URL, build_pdal_pipeline, make_DEM_pipeline
 
 AOI = box(-10_000_000, 5_000_000, -9_999_000, 5_001_000)
 
